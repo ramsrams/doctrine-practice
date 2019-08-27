@@ -1,0 +1,13 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    
+    #service definition -> enable filter on with ApiPlatform annotation or ApiPlatform yaml file
+    #see: https://api-platform.com/docs/core/filters/#search-filter
+    ActivitySubjectCustomFilter:
+        arguments: [ '@doctrine', ~, '@?logger', { subject: 'exact' } ]
+        tags:      [ { name: 'api_platform.filter', id: 'cf_subject_customer.filter' } ]
+        autowire: false
+        autoconfigure: false
